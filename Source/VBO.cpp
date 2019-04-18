@@ -3,18 +3,55 @@
 #include "DrawData.h"
 #include "GameData.h"
 
-void VBO::init(std::string vertexShader, std::string fragmentShader)
+VBO::VBO(std::string vertexShader, std::string fragmentShader)
 {
+	m_vb = std::make_unique<VertexBuffer>(&m_vertices[0].x, sizeof(glm::vec3) * m_vertices.size());
+	m_ib = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
+
 	m_va = std::make_unique<VertexArray>();
 	m_va->init();
+
+	m_bufferLayout.push<float>(3);
+	m_va->addBuffer(*m_vb, m_bufferLayout);
+
+	m_shader = std::make_shared<Shader>(vertexShader, fragmentShader);
+}
+
+VBO::VBO(std::shared_ptr<Shader> shader)
+{
+	m_vb = std::make_unique<VertexBuffer>(&m_vertices[0].x, sizeof(glm::vec3) * m_vertices.size());
+	m_ib = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
+	
+	m_va = std::make_unique<VertexArray>();
+	m_va->init();
+	m_bufferLayout.push<float>(3);
+	m_va->addBuffer(*m_vb, m_bufferLayout);
+
+	m_shader = shader;
+}
+
+void VBO::init(std::string vertexShader, std::string fragmentShader)
+{
+	m_vb = std::make_unique<VertexBuffer>(&m_vertices[0].x, sizeof(glm::vec3) * m_vertices.size());
+	m_ib = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
+
+	m_va = std::make_unique<VertexArray>();
+	m_va->init();
+	m_bufferLayout.push<float>(3);
+	m_va->addBuffer(*m_vb, m_bufferLayout);
 
 	m_shader = std::make_shared<Shader>(vertexShader, fragmentShader);
 }
 
 void VBO::init(std::shared_ptr<Shader> shader)
 {
+	m_vb = std::make_unique<VertexBuffer>(&m_vertices[0].x, sizeof(glm::vec3) * m_vertices.size());
+	m_ib = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
+
 	m_va = std::make_unique<VertexArray>();
 	m_va->init();
+	m_bufferLayout.push<float>(3);
+	m_va->addBuffer(*m_vb, m_bufferLayout);
 
 	m_shader = shader;
 }

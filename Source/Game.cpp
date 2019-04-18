@@ -13,8 +13,7 @@ bool Game::init()
 		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto m_cube = std::make_unique<Cube>();
-	m_cube->init(shader);
+	auto m_cube = std::make_unique<Cube>(shader);
 	m_cube->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	auto player = std::make_unique<Player>();
@@ -22,8 +21,7 @@ bool Game::init()
 	player->init(std::move(m_cube));
 	m_gameObjects.push_back(std::move(player));
 
-	auto cube2 = std::make_unique<Cube>();
-	cube2->init(shader);
+	auto cube2 = std::make_unique<Cube>(shader);
 	cube2->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	auto CollideCube = std::make_unique<CollidableCube>();
@@ -32,8 +30,7 @@ bool Game::init()
 	CollideCube->setPos(glm::vec3(2.0f, 0.0f, 0.0f));
 	m_gameObjects.push_back(std::move(CollideCube));
 
-	auto cube3 = std::make_unique<Cube>();
-	cube3->init(shader);
+	auto cube3 = std::make_unique<Cube>(shader);
 	cube3->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	auto CollideCube2 = std::make_unique<CollidableCube>();
@@ -42,8 +39,7 @@ bool Game::init()
 	CollideCube2->setPos(glm::vec3(-2.0f, 0.0f, 0.0f));
 	m_gameObjects.push_back(std::move(CollideCube2));
 
-	auto cube4 = std::make_unique<Cube>();
-	cube4->init(shader);
+	auto cube4 = std::make_unique<Cube>(shader);
 	cube4->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	auto CollideCube3 = std::make_unique<CollidableCube>();
@@ -52,8 +48,7 @@ bool Game::init()
 	CollideCube3->setPos(glm::vec3(0.0f, 0.0f, 2.0f));
 	m_gameObjects.push_back(std::move(CollideCube3));
 
-	auto cube5 = std::make_unique<Cube>();
-	cube5->init(shader);
+	auto cube5 = std::make_unique<Cube>(shader);
 	cube5->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
 
 	auto CollideCube4 = std::make_unique<CollidableCube>();

@@ -12,14 +12,15 @@ class VBO : public GameObject3D
 {
 public:
 	VBO() = default;
-	virtual ~VBO() = default;
+	VBO(std::string vertexShader, std::string fragmentShader);
+	VBO(std::shared_ptr<Shader> shader);
 
-	virtual void init(std::string vertexShader, std::string fragmentShader);
-	virtual void init(std::shared_ptr<Shader> shader);
+	virtual ~VBO() = default;
 
 	std::shared_ptr<Shader> getShader()const { return m_shader; }
 
-	
+	void init(std::string vertexShader, std::string fragmentShader);
+	void init(std::shared_ptr<Shader> shader);
 
 	virtual void tick(GameData* gameData) override;
 	virtual void draw(DrawData* drawData) override;
@@ -34,10 +35,13 @@ protected:
 	std::unique_ptr<VertexArray> m_va;
 	std::unique_ptr<VertexBuffer> m_vb;
 	std::unique_ptr<IndexBuffer> m_ib;
+	VertexBufferLayout m_bufferLayout;
 	std::shared_ptr<Shader> m_shader;
 
 	//To set Bounding box of object
 	std::vector<glm::vec3> m_vertices;
+	std::vector<glm::vec3> m_normals;
+	std::vector<unsigned int> m_indices;
 
 	glm::vec3 m_min;
 	glm::vec3 m_max;
