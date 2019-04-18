@@ -1,6 +1,7 @@
 #include "GameObject3D.h"
 
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtx/transform.hpp"
 
 #include "GameData.h"
 
@@ -16,13 +17,12 @@ GameObject3D::~GameObject3D()
 }
 
 void GameObject3D::tick(GameData * gameData)
-{	
-	m_rotationMatrix = glm::toMat4(m_rotation);
-
+{
 	glm::mat4 translationMat = glm::translate(glm::mat4(1.0f), m_pos);
 	glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), m_scale);
+	glm::mat4 rotationMat = glm::toMat4(m_rotation);
 
-	m_worldMatrix = translationMat * m_rotationMatrix * scaleMat;
+	m_worldMatrix = translationMat * rotationMat * scaleMat;
 }
 
 void GameObject3D::pushObject(GameObject3D * obj1, GameData* gameData)

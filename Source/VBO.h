@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "VertexData.h"
 #include "VertexArray.h"
 #include "VertexBufferLayout.h"
 #include "IndexBuffer.h"
@@ -39,8 +40,8 @@ protected:
 	std::shared_ptr<Shader> m_shader;
 
 	//To set Bounding box of object
-	std::vector<glm::vec3> m_vertices;
-	std::vector<glm::vec3> m_normals;
+	std::vector<Vertex> m_vertices;
+	Material m_material;
 	std::vector<unsigned int> m_indices;
 
 	glm::vec3 m_min;

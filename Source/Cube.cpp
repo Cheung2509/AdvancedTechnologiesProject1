@@ -8,19 +8,6 @@
 
 Cube::Cube()
 {
-	m_vertices =
-	{
-		// front		
-		glm::vec3(-1.0, -1.0,  1.0),
-		glm::vec3( 1.0, -1.0,  1.0),
-		glm::vec3( 1.0,  1.0,  1.0),
-		glm::vec3(-1.0,  1.0,  1.0),
-		// back					  
-		glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec3( 1.0, -1.0, -1.0),
-		glm::vec3( 1.0,  1.0, -1.0),
-		glm::vec3(-1.0,  1.0, -1.0),
-	};
 
 	m_indices =
 	{
@@ -52,20 +39,6 @@ Cube::Cube()
 
 Cube::Cube(std::string vertexShader, std::string fragmentShader)
 {
-	m_vertices =
-	{
-		// front		
-		glm::vec3(-1.0, -1.0,  1.0),
-		glm::vec3(1.0, -1.0,  1.0),
-		glm::vec3(1.0,  1.0,  1.0),
-		glm::vec3(-1.0,  1.0,  1.0),
-		// back					  
-		glm::vec3(-1.0, -1.0, -1.0),
-		glm::vec3(1.0, -1.0, -1.0),
-		glm::vec3(1.0,  1.0, -1.0),
-		glm::vec3(-1.0,  1.0, -1.0),
-	};
-
 	m_indices =
 	{
 		// front
@@ -94,7 +67,7 @@ Cube::Cube(std::string vertexShader, std::string fragmentShader)
 
 Cube::Cube(std::shared_ptr<Shader> shader)
 {
-	m_vertices =
+	std::vector<glm::vec3> verts =
 	{
 		// front		
 		glm::vec3(-1.0, -1.0,  1.0),
@@ -106,6 +79,16 @@ Cube::Cube(std::shared_ptr<Shader> shader)
 		glm::vec3(1.0, -1.0, -1.0),
 		glm::vec3(1.0,  1.0, -1.0),
 		glm::vec3(-1.0,  1.0, -1.0),
+	};
+
+	std::vector<glm::vec3> normals =
+	{
+		glm::vec3( 0,  0, -1),
+		glm::vec3( 0,  0,  1),
+		glm::vec3(-1,  0,  0),
+		glm::vec3( 1,  0,  0),
+		glm::vec3( 0, -1,  0),
+		glm::vec3( 0,  1,  0)
 	};
 
 	m_indices =

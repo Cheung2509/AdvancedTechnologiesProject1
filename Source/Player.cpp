@@ -46,22 +46,22 @@ void Player::handleInput(GameData* gameData)
 {
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_A))
 	{
-		m_pos -= glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime;
+		m_pos -= glm::vec3(1.0f, 0.0f, 0.0f) * gameData->m_deltaTime;
 	}
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_D))
 	{
-		m_pos += glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime;
+		m_pos += glm::vec3(1.0f, 0.0f, 0.0f) * gameData->m_deltaTime;
 	}
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_W))
 	{
-		m_pos += glm::vec3(1.0f, 0.0f, 0.0f) * gameData->m_deltaTime; 
+		m_pos -= glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime; 
 	}
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_S))
 	{
-		m_pos -= glm::vec3(1.0f, 0.0f, 0.0f) * gameData->m_deltaTime;
+		m_pos += glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime;
 	}
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_Q))
@@ -72,6 +72,6 @@ void Player::handleInput(GameData* gameData)
 	else if (gameData->m_keyboard.keyIsPressed(Key::KEY_E))
 	{
 		m_rotation = glm::rotate(m_rotation, 1.0f * gameData->m_deltaTime,
-					glm::vec3(0.0f, 1.0f, 0.0f));;
+					glm::vec3(0.0f, -1.0f, 0.0f));;
 	}
 }

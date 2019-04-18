@@ -1,9 +1,8 @@
 #include "Game.h"
 
 #include "ErrorHandler.h"
-#include "Cube.h"
+#include "Model.h"
 #include "Player.h"
-#include "CollidableCube.h"
 #include "Helper.h"
 
 bool Game::init()
@@ -13,58 +12,22 @@ bool Game::init()
 		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto m_cube = std::make_unique<Cube>(shader);
-	m_cube->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
+	auto model = std::make_unique<Model>(shader, "Resources/Models/cube.obj");
+	model->setScale(glm::vec3(0.25f));
 
 	auto player = std::make_unique<Player>();
-	player->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	player->init(std::move(m_cube));
+	player->init(std::move(model));
+	player->setScale(glm::vec3(0.25f));
 	m_gameObjects.push_back(std::move(player));
-
-	auto cube2 = std::make_unique<Cube>(shader);
-	cube2->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-
-	auto CollideCube = std::make_unique<CollidableCube>();
-	CollideCube->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	CollideCube->init(std::move(cube2));
-	CollideCube->setPos(glm::vec3(2.0f, 0.0f, 0.0f));
-	m_gameObjects.push_back(std::move(CollideCube));
-
-	auto cube3 = std::make_unique<Cube>(shader);
-	cube3->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-
-	auto CollideCube2 = std::make_unique<CollidableCube>();
-	CollideCube2->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	CollideCube2->init(std::move(cube3));
-	CollideCube2->setPos(glm::vec3(-2.0f, 0.0f, 0.0f));
-	m_gameObjects.push_back(std::move(CollideCube2));
-
-	auto cube4 = std::make_unique<Cube>(shader);
-	cube4->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-
-	auto CollideCube3 = std::make_unique<CollidableCube>();
-	CollideCube3->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	CollideCube3->init(std::move(cube4));
-	CollideCube3->setPos(glm::vec3(0.0f, 0.0f, 2.0f));
-	m_gameObjects.push_back(std::move(CollideCube3));
-
-	auto cube5 = std::make_unique<Cube>(shader);
-	cube5->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-
-	auto CollideCube4 = std::make_unique<CollidableCube>();
-	CollideCube4->setScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	CollideCube4->init(std::move(cube5));
-	CollideCube4->setPos(glm::vec3(0.0f, 0.0f, -2.0f));
-	m_gameObjects.push_back(std::move(CollideCube4));
 
 	//Initialise data structures to pass though
 	m_gameData = std::make_unique<GameData>();
 
 	m_drawData = std::make_unique<DrawData>();
 	m_drawData->m_camera = std::make_shared<Camera>(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f, 
-													glm::vec3(0.0f,1.0f,0.0f), glm::vec3(2.0f,0.0f,0.0f));
+													glm::vec3(0.0f,1.0f,0.0f), glm::vec3(0.0f,0.0f,0.0f));
 
-	m_drawData->m_camera->setPos(glm::vec3(2.0f, 3.0f, 3.0f));
+	m_drawData->m_camera->setPos(glm::vec3(0.0f, 5.0f, 5.0f));
 
 	return true;
 }
@@ -87,30 +50,30 @@ void Game::tick(const float& deltaTime, const Keyboard& keyboard, const Mouse& m
 		object->tick(m_gameData.get());
 	}
 
-	for (auto& obj1 : m_gameObjects)
-	{
-		for (auto& obj2 : m_gameObjects)
-		{
-			if (obj1 != obj2)
-			{
-				//Temporary optisation
-				if (glm::distance(obj1->getPos(), obj2->getPos()) <= 1.5)
-				{
-					if (OBBobj::checkCollision(*obj1, *obj2))
-					{
-						obj1->setCollided(true);
-						obj2->setCollided(true);
-						obj2->pushObject(obj1.get(), m_gameData.get());;
-					}
-					else
-					{
-						obj1->setCollided(false);
-						obj2->setCollided(false);
-					}
-				}
-			}
-		}
-	}
+	//for (auto& obj1 : m_gameObjects)
+	//{
+	//	for (auto& obj2 : m_gameObjects)
+	//	{
+	//		if (obj1 != obj2)
+	//		{
+	//			//Temporary optisation
+	//			if (glm::distance(obj1->getPos(), obj2->getPos()) <= 1.5)
+	//			{
+	//				if (OBBobj::checkCollision(*obj1, *obj2))
+	//				{
+	//					obj1->setCollided(true);
+	//					obj2->setCollided(true);
+	//					obj2->pushObject(obj1.get(), m_gameData.get());;
+	//				}
+	//				else
+	//				{
+	//					obj1->setCollided(false);
+	//					obj2->setCollided(false);
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 

@@ -148,6 +148,7 @@
     <ClCompile Include="Source\IndexBuffer.cpp" />
     <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Model.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\OBBobj.cpp" />
     <ClCompile Include="Source\Player.cpp" />
@@ -425,6 +426,7 @@
     <ClInclude Include="Source\VertexArray.h" />
     <ClInclude Include="Source\VertexBuffer.h" />
     <ClInclude Include="Source\VertexBufferLayout.h" />
+    <ClInclude Include="Source\VertexData.h" />
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <GL/glew.h>
+#include "VertexData.h"
 
 struct VertexBufferElement
 {
@@ -56,6 +57,12 @@ public:
 	{
 		m_elements.push_back({GL_UNSIGNED_BYTE, count, GL_TRUE});
 		m_stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_BYTE);
+	}
+
+	template<>
+	void push<Vertex>(unsigned int count)
+	{
+
 	}
 
 	inline const std::vector<VertexBufferElement> getElements() const { return m_elements; }

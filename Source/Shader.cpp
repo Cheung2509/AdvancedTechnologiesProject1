@@ -28,13 +28,27 @@ void Shader::unbind() const
 	glUseProgram(0);
 }
 
+void Shader::setUniform1f(const std::string & name, float v)
+{
+	bind();
+	GLCALL(glUniform1f(getUniformLocation(name), v));
+}
+
+void Shader::setUniform3f(const std::string & name, float v0, float v1, float v2)
+{
+	bind();
+	GLCALL(glUniform3f(getUniformLocation(name), v0, v1, v2));
+}
+
 void Shader::setUniform4f(const std::string & name, float v0, float v1, float v2, float v3)
 {
-	glUniform4f(getUniformLocation(name) , v0, v1, v2, v3);
-}
+	bind();
+	GLCALL(glUniform4f(getUniformLocation(name), v0, v1, v2, v3));
+}	
 
 void Shader::setUniform4fv(const std::string & name, int count , bool transpose, glm::mat4& matrix)
 {
+	bind();
 	glUniformMatrix4fv(getUniformLocation(name), count, transpose, &matrix[0][0]);
 }
 
@@ -43,7 +57,7 @@ int Shader::getUniformLocation(const std::string & name)
 	if (m_uniformLocationCache.find(name) != m_uniformLocationCache.end())
 		return m_uniformLocationCache[name];
 
-	int location = glGetUniformLocation(m_rendererID, name.c_str());
+	GLCALL(int location = glGetUniformLocation(m_rendererID, name.c_str()));
 
 	m_uniformLocationCache[name] = location;
 	return location;
