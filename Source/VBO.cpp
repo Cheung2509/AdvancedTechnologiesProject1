@@ -64,12 +64,13 @@ void VBO::init(std::shared_ptr<Shader> shader)
 	//Vertex position
 	GLCALL(glEnableVertexAttribArray(0));
 	GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_pos)));
-	//Vertex uv
-	GLCALL(glEnableVertexAttribArray(1));
-	GLCALL(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_uv)));
 	//Vertex normals
+	GLCALL(glEnableVertexAttribArray(1));
+	GLCALL(glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_normal)));
+	//Vertex uv
 	GLCALL(glEnableVertexAttribArray(2));
-	GLCALL(glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_normal)));
+	GLCALL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_uv)));
+	
 
 	m_shader = shader;
 }
@@ -91,6 +92,7 @@ void VBO::draw(DrawData * drawData)
 	m_shader->setUniform3f("u_light.specular", 1.0f, 1.0f, 1.0f);
 	m_shader->setUniform3f("u_viewPos", cameraPos.x, cameraPos.y, cameraPos.z);
 
+	
 	m_shader->setUniform3f("u_material.ambient", m_material.m_ambient.x,
 						   m_material.m_ambient.y, m_material.m_ambient.z);
 	m_shader->setUniform3f("u_material.diffuse", m_material.m_diffuse.x,
@@ -99,6 +101,8 @@ void VBO::draw(DrawData * drawData)
 						   m_material.m_specular.y, m_material.m_specular.z);
 	m_shader->setUniform1f("u_material.shininess", m_material.m_shininess);
 
+	glm::mat4 view = drawData->m_camera->getView();
+	m_shader->setUniform4fv("u_view", 1, GL_FALSE, view);
 	m_shader->setUniform4fv("u_model", 1, GL_FALSE, m_worldMatrix);
 	m_shader->setUniform4fv("u_MVP", 1, GL_FALSE, mvp);
 	m_shader->setUniform3f("u_colour", m_colour.x, m_colour.y, m_colour.z);

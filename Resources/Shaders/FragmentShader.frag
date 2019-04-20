@@ -1,6 +1,7 @@
 #version 400 core
 
 in vec4 fragmentColour;
+in mat4 model;
 in vec3 normal;
 in vec3 fragPos;
 in vec2 uv;
@@ -30,21 +31,31 @@ uniform vec3 u_viewPos;
 
 void main()
 {
-	//Calculate ambient light
-	vec3 ambient = u_light.ambient * u_material.ambient;
+	vec3 surfaceToLight = normalize(u_light.pos - fragPos);
+	float brightness = dot(normal, surfaceToLight);
+	brightness = clamp(brightness,0,1);
 
-	//Calculate diffuse light
-	vec3 norm = normalize(normal);
-	vec3 lightDir = normalize(u_light.pos - fragPos);
-	float diff = max(dot(norm, lightDir), 0.0);
-	vec3 diffuse = u_light.diffuse * (diff * u_material.diffuse);
+	//Calculating ambient
+	vec3 ambient = u_light.ambient * fragmentColour.rgb * 1;
+	
+	//Calculating diffuse
+	float diffuseCoefficient = max(0.0, brightness);
+	vec3 diffuse = diffuseCoefficient * fragmentColour.rgb * 1;
 
-	//Calculate specular light
-	vec3 viewDir = normalize(u_viewPos - fragPos);
-	vec3 reflectDir = reflect(-lightDir, norm);
-	float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_material.shininess);
-	vec3 specular = u_light.specular * (spec * u_material.specular);
+	//Calculating specula
+	vec3 incedence = -surfaceToLight;
+	vec3 reflection = reflect(incedence, normal);
+	vec3 surfaceToCamera = normalize(u_viewPos - fragPos);
+	float angle = max(0, dot(surfaceToCamera, reflection));
+	
+	float specCoefficient = 0.0;
+	if(diffuseCoefficient > 0.0)
+	{
+		specCoefficient = pow(angle, u_material.shininess);
+	}
+	vec3 specular = specCoefficient * u_material.specular * 1.0;
 
-	vec3 result = ambient + diffuse + specular;
-	colour = vec4(result, 1.0);
+	vec4 result = vec4(diffuse + ambient + specular, 1.0);
+	
+	colour = result;
 };

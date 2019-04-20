@@ -5,8 +5,8 @@
 struct Vertex
 {
 	glm::vec3 m_pos;
-	glm::vec2 m_uv;
 	glm::vec3 m_normal;
+	glm::vec2 m_uv;
 
 	bool operator < (const Vertex that) const
 	{

@@ -12,13 +12,17 @@ bool Game::init()
 		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto model = std::make_unique<Model>(shader, "Resources/Models/cube.obj");
+	auto model = std::make_unique<Model>(shader, "Resources/Models/suzanne.obj");
 	model->setScale(glm::vec3(0.25f));
 
 	auto player = std::make_unique<Player>();
 	player->init(std::move(model));
-	player->setScale(glm::vec3(0.25f));
 	m_gameObjects.push_back(std::move(player));
+
+	auto lightSource = std::make_unique<Model>(shader, "Resources/Models/cube.obj");
+	lightSource->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
+	lightSource->setScale(glm::vec3(0.25));
+	m_gameObjects.push_back(std::move(lightSource));
 
 	//Initialise data structures to pass though
 	m_gameData = std::make_unique<GameData>();

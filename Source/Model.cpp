@@ -9,10 +9,6 @@ Model::Model(std::shared_ptr<Shader> shader, const std::string & filePath)
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 	loadObjFile(filePath, vertices, uvs, normals);
-
-	std::vector<glm::vec3> indexedVertices;
-	std::vector<glm::vec2> indexedUVs;
-	std::vector<glm::vec3> indexedNormals;
 	indexVBO(vertices, uvs, normals);
 
 	this->init(shader);
@@ -114,8 +110,13 @@ void Model::loadObjFile(const std::string & filePath, std::vector<glm::vec3>& ve
 		unsigned int uvIndex = uvIndices[i];
 		unsigned int normalIndex = normalIndices[i];
 
+		glm::vec2 uv(0.0f);
+
 		glm::vec3 vertex = temp_v[vertexIndex - 1];
-		glm::vec2 uv = temp_uv[uvIndex - 1];
+		if (!temp_uv.empty())
+		{
+			uv = temp_uv[uvIndex - 1];
+		}
 		glm::vec3 normal = temp_n[normalIndex - 1];
 
 		vertices.emplace_back(vertex);
@@ -133,7 +134,7 @@ void Model::indexVBO(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& u
 
 	for (unsigned int i = 0; i < vertices.size(); i++)
 	{
-		Vertex data = {vertices[i], uvs[i], normals[i]};
+		Vertex data = {vertices[i], normals[i], uvs[i]};
 
 		unsigned short index;
 		bool found = false;
