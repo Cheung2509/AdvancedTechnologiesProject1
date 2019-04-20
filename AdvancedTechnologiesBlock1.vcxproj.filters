@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{bc6af50d-ac70-45f6-9e44-e9d11d9d2876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Collision">
+      <UniqueIdentifier>{9d3341db-6505-4e44-b707-42d868304276}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Vendor\glm\detail\glm.cpp">
@@ -896,26 +899,26 @@
     <ClInclude Include="Source\Player.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Collidable.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Helper.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
     <ClInclude Include="Source\CollidableCube.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AABBobj.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\OBBobj.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Source\VertexData.h">
       <Filter>Header Files\Vertex</Filter>
     </ClInclude>
+    <ClInclude Include="Source\AABBobj.h">
+      <Filter>Header Files\Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collidable.h">
+      <Filter>Header Files\Game\Collision</Filter>
+    </ClInclude>
     <ClInclude Include="Source\CollisionManager.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OBBobj.h">
+      <Filter>Header Files\Game\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1313,7 +1316,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Source\OctTree.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Game\Collision</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -25,6 +25,10 @@ struct OBoundingBox
 	glm::vec3 m_axes[3]; //Local axes
 };
 
+class AABBobj;
+class OBBobj;
+class BSobj;
+
 class Collidable : public GameObject3D
 {
 public:
@@ -33,6 +37,11 @@ public:
 
 	virtual void tick(GameData* gameData) override;
 	virtual void draw(DrawData* drawData) override;
+
+	virtual bool checkCollision(const glm::vec3& pos) const = 0;
+	virtual bool checkCollision(const AABBobj& other) const = 0;
+	virtual bool checkCollision(const OBBobj& other) const = 0;
+	virtual bool checkCollision(const BSobj& other) const = 0;
 
 	const bool& hasCollided() const { return m_collided; }
 	void setCollided(const bool& collided) { m_collided = collided; }

@@ -31,7 +31,6 @@ void Player::tick(GameData * gameData)
 	}
 
 	OBBobj::tick(gameData);
-	m_boundingBox.m_origin = m_pos;
 }
 
 void Player::draw(DrawData * drawData)

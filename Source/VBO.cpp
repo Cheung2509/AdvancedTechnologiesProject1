@@ -76,7 +76,6 @@ void VBO::init(std::shared_ptr<Shader> shader)
 	GLCALL(glEnableVertexAttribArray(2));
 	GLCALL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_uv)));
 	
-
 	m_shader = shader;
 	calculateminMax();
 }

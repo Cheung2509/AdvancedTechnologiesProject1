@@ -3,6 +3,9 @@
 #include "GameObject3D.h"
 #include "Collidable.h"
 
+class OBBobj;
+class BSobj;
+
 class AABBobj : public Collidable
 {
 public:
@@ -11,10 +14,13 @@ public:
 
 	const AABoundingBox& getBox() const { return m_boundingBox; }
 
-	static bool checkCollision(AABBobj& obj, const glm::vec3& pos);
-	static bool checkCollision(AABBobj& obj1, AABBobj& obj2);
+	virtual bool checkCollision(const glm::vec3& pos) const;
+	virtual bool checkCollision(const AABBobj& other) const;
+	virtual bool checkCollision(const OBBobj& other) const;
+	virtual bool checkCollision(const BSobj& other) const;
 
 	virtual void tick(GameData* gameData) override;
+	virtual void draw(DrawData* drawData) override;
 protected:
 	bool m_drawBox = false;
 	AABoundingBox m_boundingBox;
