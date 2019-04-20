@@ -2,6 +2,11 @@
 
 #define GL_GLEXT_PROTOTYPES
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif // !NOMINMAX
+
+
 #include <GL/glew.h>
 #include <Windows.h>
 #include <memory>

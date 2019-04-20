@@ -4,6 +4,8 @@
 
 #include "Helper.h"
 
+#include "GameObject3D.h"
+
 struct AABoundingBox
 {
 	glm::vec3 m_min; //Min vector of all axes in box

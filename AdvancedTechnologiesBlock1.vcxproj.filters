@@ -108,6 +108,12 @@
     <ClCompile Include="Source\Model.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Collidable.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionManager.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Vendor\glm\detail\_features.hpp">
@@ -908,6 +914,9 @@
     <ClInclude Include="Source\VertexData.h">
       <Filter>Header Files\Vertex</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CollisionManager.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\VertexShader.glsl">
@@ -1302,6 +1311,9 @@
     </None>
     <None Include="Resources\Shaders\FragmentShader.frag">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Source\OctTree.h">
+      <Filter>Header Files\Game</Filter>
     </None>
   </ItemGroup>
 </Project>

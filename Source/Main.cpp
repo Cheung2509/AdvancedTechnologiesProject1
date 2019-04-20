@@ -1,6 +1,5 @@
 #include "Application.h"
 
-
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nCmdShow)
 {
 	//Create new application

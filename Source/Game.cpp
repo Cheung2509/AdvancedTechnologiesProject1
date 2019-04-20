@@ -12,7 +12,7 @@ bool Game::init()
 		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto model = std::make_unique<Model>(shader, "Resources/Models/suzanne.obj");
+	auto model = std::make_unique<Model>(shader, "Resources/Models/cube.obj");
 	model->setScale(glm::vec3(0.25f));
 
 	auto player = std::make_unique<Player>();

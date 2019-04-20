@@ -6,6 +6,7 @@
 
 //Pre-Processing directives
 #define WIND32_LEAN_AND_MEAN
+#define NOMINMAX
 
 //Includes
 #include "Game.h"

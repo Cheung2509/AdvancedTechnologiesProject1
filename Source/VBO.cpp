@@ -1,5 +1,7 @@
 #include "VBO.h"
 
+#include <limits>
+
 #include "DrawData.h"
 #include "GameData.h"
 
@@ -19,6 +21,7 @@ VBO::VBO(std::string vertexShader, std::string fragmentShader)
 	m_va->addBuffer(*m_vb, m_bufferLayout);
 
 	m_shader = std::make_shared<Shader>(vertexShader, fragmentShader);
+	calculateminMax();
 }
 
 VBO::VBO(std::shared_ptr<Shader> shader)
@@ -34,6 +37,7 @@ VBO::VBO(std::shared_ptr<Shader> shader)
 	m_va->addBuffer(*m_vb, m_bufferLayout);
 
 	m_shader = shader;
+	calculateminMax();
 }
 
 void VBO::init(std::string vertexShader, std::string fragmentShader)
@@ -49,6 +53,7 @@ void VBO::init(std::string vertexShader, std::string fragmentShader)
 	m_va->addBuffer(*m_vb, m_bufferLayout);
 
 	m_shader = std::make_shared<Shader>(vertexShader, fragmentShader);
+	calculateminMax();
 }
 
 void VBO::init(std::shared_ptr<Shader> shader)
@@ -73,6 +78,7 @@ void VBO::init(std::shared_ptr<Shader> shader)
 	
 
 	m_shader = shader;
+	calculateminMax();
 }
 
 void VBO::tick(GameData * gameData)
@@ -112,10 +118,14 @@ void VBO::draw(DrawData * drawData)
 
 void VBO::calculateminMax()
 {
+	float inf = std::numeric_limits<float>::infinity();
+	m_min = glm::vec3(inf);
+	m_max = glm::vec3(-inf);
+
 	//Finding minumum and max for vertices
 	for (auto& vertex : m_vertices)
 	{
-		//m_min = glm::min(vertex.m_pos, m_min);
-		//m_max = glm::max(vertex.m_pos, m_max);
+		m_min = glm::min(vertex.m_pos, m_min);
+		m_max = glm::max(vertex.m_pos, m_max);
 	}
 }

@@ -140,8 +140,10 @@
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\Collidable.cpp" />
     <ClCompile Include="Source\CollidableCube.cpp" />
     <ClCompile Include="Source\AABBobj.cpp" />
+    <ClCompile Include="Source\CollisionManager.cpp" />
     <ClCompile Include="Source\Cube.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GameObject3D.cpp" />
@@ -162,6 +164,7 @@
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CollisionManager.h" />
     <ClInclude Include="Source\OBBobj.h" />
     <ClInclude Include="Source\Collidable.h" />
     <ClInclude Include="Source\CollidableCube.h" />
@@ -432,6 +435,7 @@
   <ItemGroup>
     <None Include="Resources\Shaders\FragmentShader.frag" />
     <None Include="Resources\Shaders\VertexShader.glsl" />
+    <None Include="Source\OctTree.h" />
     <None Include="Source\Vendor\glm\detail\func_common.inl" />
     <None Include="Source\Vendor\glm\detail\func_common_simd.inl" />
     <None Include="Source\Vendor\glm\detail\func_exponential.inl" />
