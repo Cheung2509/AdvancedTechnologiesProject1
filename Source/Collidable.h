@@ -22,3 +22,19 @@ struct OBoundingBox
 	glm::vec3 m_halfLength; //Half length of box
 	glm::vec3 m_axes[3]; //Local axes
 };
+
+class Collidable : public GameObject3D
+{
+public:
+	Collidable() = default;
+	~Collidable() = default;
+
+	virtual void tick(GameData* gameData) override;
+	virtual void draw(DrawData* drawData) override;
+
+	const bool& hasCollided() const { return m_collided; }
+	void setCollided(const bool& collided) { m_collided = collided; }
+
+protected:
+	bool m_collided = false;
+};
