@@ -8,7 +8,6 @@
 
 Cube::Cube()
 {
-
 	m_indices =
 	{
 		// front
@@ -69,12 +68,12 @@ Cube::Cube(std::shared_ptr<Shader> shader)
 {
 	std::vector<glm::vec3> verts =
 	{
-		// front		
+		// front
 		glm::vec3(-1.0, -1.0,  1.0),
 		glm::vec3(1.0, -1.0,  1.0),
 		glm::vec3(1.0,  1.0,  1.0),
 		glm::vec3(-1.0,  1.0,  1.0),
-		// back					  
+		// back
 		glm::vec3(-1.0, -1.0, -1.0),
 		glm::vec3(1.0, -1.0, -1.0),
 		glm::vec3(1.0,  1.0, -1.0),
@@ -83,12 +82,12 @@ Cube::Cube(std::shared_ptr<Shader> shader)
 
 	std::vector<glm::vec3> normals =
 	{
-		glm::vec3( 0,  0, -1),
-		glm::vec3( 0,  0,  1),
+		glm::vec3(0,  0, -1),
+		glm::vec3(0,  0,  1),
 		glm::vec3(-1,  0,  0),
-		glm::vec3( 1,  0,  0),
-		glm::vec3( 0, -1,  0),
-		glm::vec3( 0,  1,  0)
+		glm::vec3(1,  0,  0),
+		glm::vec3(0, -1,  0),
+		glm::vec3(0,  1,  0)
 	};
 
 	m_indices =

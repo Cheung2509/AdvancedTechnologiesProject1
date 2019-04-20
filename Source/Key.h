@@ -12,7 +12,7 @@ enum Key
 	KEY_7 = 0x37,
 	KEY_8 = 0x38,
 	KEY_9 = 0x39,
-				
+
 	KEY_A = 0x41,
 	KEY_B = 0x42,
 	KEY_C = 0x43,

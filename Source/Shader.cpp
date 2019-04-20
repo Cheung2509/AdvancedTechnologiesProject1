@@ -1,4 +1,3 @@
-
 #include "Shader.h"
 
 #include "GL/glew.h"
@@ -44,9 +43,9 @@ void Shader::setUniform4f(const std::string & name, float v0, float v1, float v2
 {
 	bind();
 	GLCALL(glUniform4f(getUniformLocation(name), v0, v1, v2, v3));
-}	
+}
 
-void Shader::setUniform4fv(const std::string & name, int count , bool transpose, glm::mat4& matrix)
+void Shader::setUniform4fv(const std::string & name, int count, bool transpose, glm::mat4& matrix)
 {
 	bind();
 	glUniformMatrix4fv(getUniformLocation(name), count, transpose, &matrix[0][0]);
@@ -65,10 +64,9 @@ int Shader::getUniformLocation(const std::string & name)
 
 unsigned int Shader::createShader(const std::string & vertexShader, const std::string & fragmentShader)
 {
-
 	unsigned int program = glCreateProgram();
 
-	//Compile 
+	//Compile
 	unsigned int vs = compileShader(GL_VERTEX_SHADER, parseShader(vertexShader));
 	unsigned int fs = compileShader(GL_FRAGMENT_SHADER, parseShader(fragmentShader));
 
@@ -109,7 +107,7 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 
 	int result;
 	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-	
+
 	if (result == GL_FALSE)
 	{
 		int length;
@@ -124,7 +122,6 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 
 		glDeleteShader(id);
 
-		
 		return 0;
 	}
 

@@ -35,7 +35,7 @@ public:
 protected:
 	glm::vec3 m_pos;
 	glm::vec3 m_scale;
-	
+
 	glm::quat m_rotation;
 
 	glm::vec4 m_colour = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);

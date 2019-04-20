@@ -59,13 +59,12 @@ const bool Renderer::init(HWND& hWnd)
 
 	wglCreateContextAttribsARB(hdc, m_deviceContext, attribList);
 
-
 #if _DEBUG == 1
 	//Print version of OpenGL
 	std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 #endif
 
-	//Enable OpenGL options 
+	//Enable OpenGL options
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
@@ -75,7 +74,7 @@ const bool Renderer::init(HWND& hWnd)
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	//If all initalization suceeded return true

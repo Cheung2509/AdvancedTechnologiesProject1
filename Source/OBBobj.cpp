@@ -33,8 +33,8 @@ bool OBBobj::checkCollision(const OBBobj& other) const
 
 	glm::vec3 t = other.getPos() - m_pos;
 
-	t = glm::vec3(glm::dot(t, m_boundingBox.m_axes[0]), 
-				  glm::dot(t, m_boundingBox.m_axes[1]), 
+	t = glm::vec3(glm::dot(t, m_boundingBox.m_axes[0]),
+				  glm::dot(t, m_boundingBox.m_axes[1]),
 				  glm::dot(t, m_boundingBox.m_axes[2]));
 
 	for (int i = 0; i < 3; i++)
@@ -74,7 +74,7 @@ bool OBBobj::checkCollision(const OBBobj& other) const
 
 	//L = A0 x B0
 	ra = m_boundingBox.m_halfLength[1] * AbsR[2][0] +
-		 m_boundingBox.m_halfLength[2] * AbsR[1][0];
+		m_boundingBox.m_halfLength[2] * AbsR[1][0];
 	rb = other.getBox().m_halfLength[1] * AbsR[0][2] +
 		other.getBox().m_halfLength[2] * AbsR[0][1];
 	if (std::abs(t[2] * r[1][0] - t[1] * r[2][0]) > ra + rb)
@@ -82,7 +82,7 @@ bool OBBobj::checkCollision(const OBBobj& other) const
 		return false;
 	}
 
-	//L = A0 x B1 
+	//L = A0 x B1
 	ra = m_boundingBox.m_halfLength[1] * AbsR[2][1] +
 		m_boundingBox.m_halfLength[2] * AbsR[1][1];
 	rb = other.getBox().m_halfLength[0] * AbsR[0][2] +

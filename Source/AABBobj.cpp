@@ -20,7 +20,6 @@ bool AABBobj::checkCollision(const AABBobj& other) const
 		m_boundingBox.m_min.y + m_pos.y < other.getBox().m_max.y + other.getPos().y &&
 		m_boundingBox.m_max.z + m_pos.z > other.getBox().m_min.z + other.getPos().z &&
 		m_boundingBox.m_min.z + m_pos.z < other.getBox().m_max.z + other.getPos().z;
-
 }
 
 bool AABBobj::checkCollision(const OBBobj & other) const
@@ -96,7 +95,7 @@ bool AABBobj::checkCollision(const OBBobj & other) const
 		return false;
 	}
 
-	//L = A0 x B1 
+	//L = A0 x B1
 	ra = halfLength[1] * AbsR[2][1] + halfLength[2] * AbsR[1][1];
 	rb = other.getBox().m_halfLength[0] * AbsR[0][2] +
 		other.getBox().m_halfLength[2] * AbsR[0][0];

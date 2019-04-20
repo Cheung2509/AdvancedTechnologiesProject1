@@ -27,7 +27,7 @@ const bool Application::initialize(const wchar_t* className)
 	std::ofstream console_out("CONOUT$");
 	std::cout.rdbuf(console_out.rdbuf());
 #endif
-	 
+
 	m_renderer = std::make_shared<Renderer>();
 	m_renderer->init(m_window.getHWND());
 
@@ -50,7 +50,7 @@ const bool Application::run()
 	while (WM_QUIT != msg.message)
 	{
 		msg = processMessage();
-		
+
 		m_game.tick(timer.mark(), m_window.getKeyboard(), m_window.getMouse());
 		m_game.draw(m_renderer);
 

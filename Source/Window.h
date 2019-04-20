@@ -12,7 +12,7 @@ public:
 	~Window();
 
 	bool init(const wchar_t* className);
-	
+
 	const Keyboard& getKeyboard() const { return m_keyboard; }
 	const Mouse& getMouse() const { return m_mouse; }
 	HDC getHDC() const { return m_hdc; }

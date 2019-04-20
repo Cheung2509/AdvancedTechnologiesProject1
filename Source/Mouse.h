@@ -20,22 +20,25 @@ public:
 			RRelease,
 			WheelUp,
 			WheelDown,
-			Move, 
+			Move,
 			Invalid
 		};
 	public:
 		Event() : m_type(Invalid), m_leftIsPressed(false), m_rightIsPressed(false),
 			m_pos(0, 0)
-		{ }
-		Event(Type type, const Mouse& parent) : m_type(type), 
+		{
+		}
+		Event(Type type, const Mouse& parent) : m_type(type),
 			m_leftIsPressed(parent.m_leftIsPressed), m_rightIsPressed(false),
-			m_pos(parent.m_pos) {}
+			m_pos(parent.m_pos)
+		{
+		}
 
-		bool isValid() const		{ return m_type != Invalid; }
-		Type getType() const		{ return m_type; }
-		glm::vec2 getPos() const	{ return m_pos; }
+		bool isValid() const { return m_type != Invalid; }
+		Type getType() const { return m_type; }
+		glm::vec2 getPos() const { return m_pos; }
 
-		bool leftIsPressed() const	{ return m_leftIsPressed; }
+		bool leftIsPressed() const { return m_leftIsPressed; }
 		bool rightIsPressed() const { return m_rightIsPressed; }
 	private:
 		Type m_type;

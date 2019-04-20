@@ -12,7 +12,7 @@ bool Game::init()
 		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto model = std::make_unique<Model>(shader, "Resources/Models/Sphere.obj");
+	auto model = std::make_unique<Model>(shader, "Resources/Models/Suzanne.obj");
 	model->setScale(glm::vec3(0.25f));
 
 	auto player = std::make_unique<Player>();
@@ -28,8 +28,8 @@ bool Game::init()
 	m_gameData = std::make_unique<GameData>();
 
 	m_drawData = std::make_unique<DrawData>();
-	m_drawData->m_camera = std::make_shared<Camera>(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f, 
-													glm::vec3(0.0f,1.0f,0.0f), glm::vec3(0.0f,0.0f,0.0f));
+	m_drawData->m_camera = std::make_shared<Camera>(glm::radians(45.0f), 640.0f / 480.0f, 0.1f, 100.0f,
+													glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 
 	m_drawData->m_camera->setPos(glm::vec3(0.0f, 5.0f, 5.0f));
 
@@ -79,7 +79,6 @@ void Game::tick(const float& deltaTime, const Keyboard& keyboard, const Mouse& m
 	//	}
 	//}
 }
-
 
 void Game::draw(std::shared_ptr<Renderer> renderer)
 {

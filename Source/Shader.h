@@ -21,7 +21,7 @@ public:
 	void setUniform4fv(const std::string& name, int count, bool transpose, glm::mat4& matrix);
 private:
 	int getUniformLocation(const std::string& name);
-	
+
 	unsigned int compileShader(unsigned int type, const std::string& source);
 	const std::string parseShader(const std::string& filepath);
 	unsigned int createShader(const std::string & vertexShader, const std::string & fragmentShader);

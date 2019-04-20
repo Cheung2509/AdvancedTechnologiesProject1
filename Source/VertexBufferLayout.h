@@ -30,7 +30,7 @@ public:
 	{
 	};
 	~VertexBufferLayout() = default;
-	
+
 	//Push back
 	template<typename T>
 	void push(unsigned int count)
@@ -62,7 +62,6 @@ public:
 	template<>
 	void push<Vertex>(unsigned int count)
 	{
-
 	}
 
 	inline const std::vector<VertexBufferElement> getElements() const { return m_elements; }

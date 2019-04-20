@@ -28,7 +28,7 @@ public:
 
 	const glm::vec3& getMin() const { return m_min; }
 	const glm::vec3& getMax() const { return m_max; }
-	
+
 	void setWorld(const glm::mat4& world) { m_worldMatrix = world; }
 protected:
 	void calculateminMax();

@@ -5,10 +5,9 @@
 
 #include "GameData.h"
 
-
 GameObject3D::GameObject3D()
-	:m_worldMatrix(1.0f), m_scale(1.0f,1.0f,1.0f), m_rotationMatrix(1.0f),
-	m_rotation(1.0f,0.0f,0.0f,0.0f)
+	:m_worldMatrix(1.0f), m_scale(1.0f, 1.0f, 1.0f), m_rotationMatrix(1.0f),
+	m_rotation(1.0f, 0.0f, 0.0f, 0.0f)
 {
 }
 

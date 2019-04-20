@@ -117,7 +117,6 @@ LRESULT WINAPI Window::staticWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 		return pWnd->handleMsg(hWnd, uMsg, wParam, lParam);
 	}
 
-
 	return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
 
@@ -163,8 +162,6 @@ LRESULT Window::handleMsg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		int x = LOWORD(lParam);
 		int y = HIWORD(lParam);
-
-
 	}
 	break;
 	case WM_LBUTTONDOWN:

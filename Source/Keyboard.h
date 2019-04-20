@@ -9,7 +9,7 @@ public:
 	friend class Window;
 	class Event
 	{
-	public: 
+	public:
 		enum Type
 		{
 			Press,
@@ -33,7 +33,7 @@ public:
 
 public:
 	Keyboard() = default;
-	
+
 	bool keyIsPressed(unsigned char keyCode) const;
 	bool keyIsEmpty() const;
 	bool charIsEmpty() const;
@@ -62,4 +62,3 @@ private:
 	std::queue<Event> m_keyBuffer;
 	std::queue<char> m_charBuffer;
 };
-

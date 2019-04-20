@@ -28,7 +28,7 @@ VBO::VBO(std::shared_ptr<Shader> shader)
 {
 	m_vb = std::make_unique<VertexBuffer>(&m_vertices[0], sizeof(glm::vec3) * m_vertices.size());
 	m_ib = std::make_unique<IndexBuffer>(&m_indices[0], m_indices.size());
-	
+
 	m_va = std::make_unique<VertexArray>();
 	m_va->init();
 	m_bufferLayout.push<float>(3);
@@ -63,7 +63,7 @@ void VBO::init(std::shared_ptr<Shader> shader)
 
 	m_va = std::make_unique<VertexArray>();
 	m_va->init();
-	
+
 	m_va->bind();
 	m_vb->bind();
 	//Vertex position
@@ -75,7 +75,7 @@ void VBO::init(std::shared_ptr<Shader> shader)
 	//Vertex uv
 	GLCALL(glEnableVertexAttribArray(2));
 	GLCALL(glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, m_uv)));
-	
+
 	m_shader = shader;
 	calculateminMax();
 }
@@ -97,7 +97,6 @@ void VBO::draw(DrawData * drawData)
 	m_shader->setUniform3f("u_light.specular", 1.0f, 1.0f, 1.0f);
 	m_shader->setUniform3f("u_viewPos", cameraPos.x, cameraPos.y, cameraPos.z);
 
-	
 	m_shader->setUniform3f("u_material.ambient", m_material.m_ambient.x,
 						   m_material.m_ambient.y, m_material.m_ambient.z);
 	m_shader->setUniform3f("u_material.diffuse", m_material.m_diffuse.x,

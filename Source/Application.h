@@ -27,4 +27,4 @@ private:
 	std::shared_ptr<Renderer> m_renderer = nullptr;
 	Window m_window;
 	Game m_game;
-}; 
+};

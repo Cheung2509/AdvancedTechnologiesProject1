@@ -11,7 +11,6 @@ void Player::init(std::unique_ptr<VBO> model)
 										   std::abs(m_model->getMin().y - m_model->getMax().y) / 2,
 										   std::abs(m_model->getMin().z - m_model->getMax().z) / 2) * m_scale;
 
-	
 	m_boundingBox.m_axes[0] = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_boundingBox.m_axes[1] = glm::vec3(0.0f, 1.0f, 0.0f);
 	m_boundingBox.m_axes[2] = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -55,7 +54,7 @@ void Player::handleInput(GameData* gameData)
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_W))
 	{
-		m_pos -= glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime; 
+		m_pos -= glm::vec3(0.0f, 0.0f, 1.0f) * gameData->m_deltaTime;
 	}
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_S))
@@ -65,12 +64,12 @@ void Player::handleInput(GameData* gameData)
 
 	if (gameData->m_keyboard.keyIsPressed(Key::KEY_Q))
 	{
-		m_rotation = glm::rotate(m_rotation, 1.0f * gameData->m_deltaTime, 
-								 glm::vec3(0.0f,1.0f,0.0f));;
+		m_rotation = glm::rotate(m_rotation, 1.0f * gameData->m_deltaTime,
+								 glm::vec3(0.0f, 1.0f, 0.0f));;
 	}
 	else if (gameData->m_keyboard.keyIsPressed(Key::KEY_E))
 	{
 		m_rotation = glm::rotate(m_rotation, 1.0f * gameData->m_deltaTime,
-					glm::vec3(0.0f, -1.0f, 0.0f));;
+								 glm::vec3(0.0f, -1.0f, 0.0f));;
 	}
 }

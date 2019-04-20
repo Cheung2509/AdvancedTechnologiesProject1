@@ -6,7 +6,6 @@
 #define NOMINMAX
 #endif // !NOMINMAX
 
-
 #include <GL/glew.h>
 #include <Windows.h>
 #include <memory>

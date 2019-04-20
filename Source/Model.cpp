@@ -24,7 +24,7 @@ void Model::draw(DrawData * drawData)
 	VBO::draw(drawData);
 }
 
-void Model::loadObjFile(const std::string & filePath, std::vector<glm::vec3>& vertices, 
+void Model::loadObjFile(const std::string & filePath, std::vector<glm::vec3>& vertices,
 						std::vector<glm::vec2>& uvs, std::vector<glm::vec3>& normals)
 {
 	FILE* file = new FILE();
@@ -160,6 +160,5 @@ void Model::indexVBO(std::vector<glm::vec3>& vertices, std::vector<glm::vec2>& u
 			m_indices.push_back(newIndex);
 			map[data] = newIndex;
 		}
-		
 	}
 }
