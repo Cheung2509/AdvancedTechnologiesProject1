@@ -20,7 +20,6 @@ void main()
 	fragmentColour = u_colour.xyz;
 	model = u_model;
 	normal = normalize(transpose(inverse(mat3(u_view * u_model))) * lNormal);
-	//normal = lNormal;
 	fragPos = vec3(u_model * vec4(lPos,1.0));
 	uv = lUV;
 

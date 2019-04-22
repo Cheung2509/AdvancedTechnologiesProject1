@@ -43,5 +43,6 @@ protected:
 	glm::mat4 m_worldMatrix;
 	glm::mat4 m_rotationMatrix;
 
+	bool m_collidable = false;
 	bool m_physics = false;
 };

@@ -6,21 +6,30 @@
 
 #include "GameObject3D.h"
 
-struct AABoundingBox
+struct Bounds
 {
+	glm::vec3 m_origin;
+};
+
+struct AABoundingBox : public Bounds
+{
+	AABoundingBox() = default;
+	AABoundingBox(glm::vec3 min, glm::vec3 max, glm::vec3 origin) : m_min(min), m_max(max)
+	{
+		m_origin = origin;
+	}
+
 	glm::vec3 m_min; //Min vector of all axes in box
 	glm::vec3 m_max; //Max vector of all axes in box
 };
 
-struct BoundingSphere
+struct BoundingSphere : public Bounds
 {
-	glm::vec3 m_origin;
 	float radius; //radius of sphere
 };
 
-struct OBoundingBox
+struct OBoundingBox : public Bounds
 {
-	glm::vec3 m_origin; //Origin of box (Centre)
 	glm::vec3 m_halfLength; //Half length of box
 	glm::vec3 m_axes[3]; //Local axes
 };
@@ -29,11 +38,19 @@ class AABBobj;
 class OBBobj;
 class BSobj;
 
+enum class Type
+{
+	NONE = 0,
+	AABB = 1,
+	OBB = 2,
+	BS = 3
+};
+
 class Collidable : public GameObject3D
 {
 public:
-	Collidable() = default;
-	~Collidable() = default;
+	Collidable();
+	virtual ~Collidable() = default;
 
 	virtual void tick(GameData* gameData) override;
 	virtual void draw(DrawData* drawData) override;
@@ -43,9 +60,15 @@ public:
 	virtual bool checkCollision(const OBBobj& other) const = 0;
 	virtual bool checkCollision(const BSobj& other) const = 0;
 
+	virtual bool checkCollision(const AABoundingBox& other) const = 0;
+	virtual bool checkCollision(const OBoundingBox& other) const = 0;
+	virtual bool checkCollision(const BoundingSphere& other) const = 0;
+
+	const Type& getType() const { return m_type; }
 	const bool& hasCollided() const { return m_collided; }
 	void setCollided(const bool& collided) { m_collided = collided; }
 
 protected:
+	Type m_type = Type::NONE;
 	bool m_collided = false;
 };

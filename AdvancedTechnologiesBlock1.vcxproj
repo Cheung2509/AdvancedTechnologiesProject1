@@ -153,6 +153,7 @@
     <ClCompile Include="Source\Model.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\OBBobj.cpp" />
+    <ClCompile Include="Source\OctTree.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\Shader.cpp" />

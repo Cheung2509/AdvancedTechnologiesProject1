@@ -5,13 +5,17 @@
 class OBBobj : public Collidable
 {
 public:
-	OBBobj() = default;
+	OBBobj();
 	~OBBobj() = default;
 
 	virtual bool checkCollision(const glm::vec3& pos) const;
 	virtual bool checkCollision(const AABBobj& other) const;
 	virtual bool checkCollision(const OBBobj& other) const;
 	virtual bool checkCollision(const BSobj& other) const;
+
+	virtual bool checkCollision(const AABoundingBox& other) const;
+	virtual bool checkCollision(const OBoundingBox& other) const;
+	virtual bool checkCollision(const BoundingSphere& other) const;
 
 	const OBoundingBox& getBox() const { return m_boundingBox; }
 
