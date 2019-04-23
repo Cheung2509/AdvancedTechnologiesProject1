@@ -4,7 +4,7 @@
 
 AABBobj::AABBobj()
 {
-	m_type = Type::AABB;
+	m_collidableType = CollidableBounds::AABB;
 	m_collidable = true;
 }
 
@@ -342,6 +342,10 @@ const bool AABBobj::checkCollision(const OBoundingBox & other) const
 const bool AABBobj::checkCollision(const BoundingSphere & other) const
 {
 	return false;
+}
+
+void AABBobj::onHit(Collidable* other)
+{
 }
 
 void AABBobj::tick(GameData * gameData)

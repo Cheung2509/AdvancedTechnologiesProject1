@@ -3,6 +3,11 @@
 #include "GameData.h"
 #include "Key.h"
 
+Player::Player(std::unique_ptr<VBO> model)
+{
+	m_type = Tag::PLAYER;
+}
+
 void Player::init(std::unique_ptr<VBO> model)
 {
 	m_model = std::move(model);
@@ -14,6 +19,10 @@ void Player::init(std::unique_ptr<VBO> model)
 	m_boundingBox.m_axes[0] = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_boundingBox.m_axes[1] = glm::vec3(0.0f, 1.0f, 0.0f);
 	m_boundingBox.m_axes[2] = glm::vec3(0.0f, 0.0f, 1.0f);
+}
+
+void Player::onHit(Collidable* other)
+{
 }
 
 void Player::tick(GameData * gameData)

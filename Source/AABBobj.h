@@ -23,6 +23,8 @@ public:
 	virtual const bool checkCollision(const OBoundingBox& other) const;
 	virtual const bool checkCollision(const BoundingSphere& other) const;
 
+	virtual void onHit(Collidable* other);
+
 	virtual void tick(GameData* gameData) override;
 	virtual void draw(DrawData* drawData) override;
 protected:

@@ -38,7 +38,7 @@ class AABBobj;
 class OBBobj;
 class BSobj;
 
-enum class Type
+enum class CollidableBounds
 {
 	NONE = 0,
 	AABB = 1,
@@ -64,11 +64,12 @@ public:
 	virtual const bool checkCollision(const OBoundingBox& other) const = 0;
 	virtual const bool checkCollision(const BoundingSphere& other) const = 0;
 		    
-	const Type& getType() const { return m_type; }
+	const CollidableBounds& getCollidableType() const { return m_collidableType; }
 	const bool& hasCollided() const { return m_collided; }
 	void setCollided(const bool& collided) { m_collided = collided; }
+	virtual void onHit(Collidable* other) = 0;
 
 protected:
-	Type m_type = Type::NONE;
+	CollidableBounds m_collidableType = CollidableBounds::NONE;
 	bool m_collided = false;
 };

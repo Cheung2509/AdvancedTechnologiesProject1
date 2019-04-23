@@ -16,6 +16,7 @@ public:
 	virtual const bool checkCollision(const AABoundingBox& other) const;
 	virtual const bool checkCollision(const OBoundingBox& other) const;
 	virtual const bool checkCollision(const BoundingSphere& other) const;
+	virtual void onHit(Collidable* other);
 
 	const OBoundingBox& getBox() const { return m_boundingBox; }
 

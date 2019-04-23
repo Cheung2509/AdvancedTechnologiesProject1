@@ -11,6 +11,14 @@ struct GameData;
 struct DrawData;
 class Renderer;
 
+enum class Tag
+{
+	NONE = 0,
+	PLAYER = 1, 
+	ENEMY = 2,
+	PLANE = 3
+};
+
 class GameObject3D
 {
 public:
@@ -46,4 +54,6 @@ protected:
 
 	bool m_collidable = false;
 	bool m_physics = false;
+
+	Tag m_type = Tag::NONE;
 };

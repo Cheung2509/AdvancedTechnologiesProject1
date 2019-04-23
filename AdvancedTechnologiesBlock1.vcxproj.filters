@@ -34,17 +34,17 @@
     <Filter Include="Source Files\Framework\Input">
       <UniqueIdentifier>{41975071-0ce8-45e5-a2d3-9d2f5660fd92}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game">
-      <UniqueIdentifier>{b0cecc95-fa54-4549-9c03-a7bdf115892f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{bc6af50d-ac70-45f6-9e44-e9d11d9d2876}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game\Collision">
-      <UniqueIdentifier>{9d3341db-6505-4e44-b707-42d868304276}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game\Collision">
       <UniqueIdentifier>{85a0f161-c952-48d0-884d-b2438d3c1fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{b0cecc95-fa54-4549-9c03-a7bdf115892f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Collision">
+      <UniqueIdentifier>{9d3341db-6505-4e44-b707-42d868304276}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

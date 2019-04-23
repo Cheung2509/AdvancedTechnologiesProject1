@@ -8,7 +8,7 @@
 
 OBBobj::OBBobj()
 {
-	m_type = Type::OBB;
+	m_collidableType = CollidableBounds::OBB;
 	m_collidable = true;
 }
 
@@ -645,6 +645,10 @@ const bool OBBobj::checkCollision(const OBoundingBox & other) const
 const bool OBBobj::checkCollision(const BoundingSphere & other) const
 {
 	return false;
+}
+
+void OBBobj::onHit(Collidable* other)
+{
 }
 
 void OBBobj::tick(GameData * gameData)

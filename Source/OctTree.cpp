@@ -60,21 +60,27 @@ void OctTree::tick(GameData * gameData)
 		{
 			for (auto& other : m_collidable)
 			{
-				switch (other->getType())
+				switch (other->getCollidableType())
 				{
-				case Type::AABB:
+				case CollidableBounds::AABB:
 				{
 					auto temp = static_cast<const AABBobj*>(other);
-					obj->checkCollision(*temp);
+					if (obj->checkCollision(*temp))
+					{
+						obj->onHit(other);
+					}
 					break;
 				}
-				case Type::OBB:
+				case CollidableBounds::OBB:
 				{
 					auto temp = static_cast<const OBBobj*>(other);
-					obj->checkCollision(*temp);
+					if (obj->checkCollision(*temp))
+					{
+						obj->onHit(other);
+					}
 					break;
 				}
-				case Type::BS:
+				case CollidableBounds::BS:
 				{
 					break;
 				}
