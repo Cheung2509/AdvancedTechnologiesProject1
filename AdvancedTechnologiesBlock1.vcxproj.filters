@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Game\Collision">
       <UniqueIdentifier>{9d3341db-6505-4e44-b707-42d868304276}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Collision">
+      <UniqueIdentifier>{85a0f161-c952-48d0-884d-b2438d3c1fd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Vendor\glm\detail\glm.cpp">
@@ -99,26 +102,26 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AABBobj.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CollidableCube.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OBBobj.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\Model.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collidable.cpp">
-      <Filter>Source Files\Game</Filter>
+    <ClCompile Include="Source\AABBobj.cpp">
+      <Filter>Source Files\Game\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CollisionManager.cpp">
-      <Filter>Source Files\Game</Filter>
+    <ClCompile Include="Source\OBBobj.cpp">
+      <Filter>Source Files\Game\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\OctTree.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionManager.cpp">
+      <Filter>Source Files\Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collidable.cpp">
+      <Filter>Source Files\Game\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

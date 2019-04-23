@@ -55,15 +55,15 @@ public:
 	virtual void tick(GameData* gameData) override;
 	virtual void draw(DrawData* drawData) override;
 
-	virtual bool checkCollision(const glm::vec3& pos) const = 0;
-	virtual bool checkCollision(const AABBobj& other) const = 0;
-	virtual bool checkCollision(const OBBobj& other) const = 0;
-	virtual bool checkCollision(const BSobj& other) const = 0;
-
-	virtual bool checkCollision(const AABoundingBox& other) const = 0;
-	virtual bool checkCollision(const OBoundingBox& other) const = 0;
-	virtual bool checkCollision(const BoundingSphere& other) const = 0;
-
+	virtual const bool checkCollision(const glm::vec3& pos) const = 0;
+	virtual const bool checkCollision(const AABBobj& other) const = 0;
+	virtual const bool checkCollision(const OBBobj& other) const = 0;
+	virtual const bool checkCollision(const BSobj& other) const = 0;
+ 
+	virtual const bool checkCollision(const AABoundingBox& other) const = 0;
+	virtual const bool checkCollision(const OBoundingBox& other) const = 0;
+	virtual const bool checkCollision(const BoundingSphere& other) const = 0;
+		    
 	const Type& getType() const { return m_type; }
 	const bool& hasCollided() const { return m_collided; }
 	void setCollided(const bool& collided) { m_collided = collided; }

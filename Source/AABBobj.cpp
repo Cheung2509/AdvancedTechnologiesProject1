@@ -5,9 +5,10 @@
 AABBobj::AABBobj()
 {
 	m_type = Type::AABB;
+	m_collidable = true;
 }
 
-bool AABBobj::checkCollision(const glm::vec3& pos) const
+const bool AABBobj::checkCollision(const glm::vec3& pos) const
 {
 	return m_boundingBox.m_min.x + m_pos.x < pos.x &&
 		m_boundingBox.m_max.x + m_pos.x > pos.x &&
@@ -17,7 +18,7 @@ bool AABBobj::checkCollision(const glm::vec3& pos) const
 		m_boundingBox.m_max.z + m_pos.z > pos.z;
 }
 
-bool AABBobj::checkCollision(const AABBobj& other) const
+const bool AABBobj::checkCollision(const AABBobj& other) const
 {
 	return m_boundingBox.m_max.x + m_pos.x > other.getBox().m_min.x + other.getPos().x &&
 		m_boundingBox.m_min.x + m_pos.x < other.getBox().m_max.x + other.getPos().x &&
@@ -27,7 +28,7 @@ bool AABBobj::checkCollision(const AABBobj& other) const
 		m_boundingBox.m_min.z + m_pos.z < other.getBox().m_max.z + other.getPos().z;
 }
 
-bool AABBobj::checkCollision(const OBBobj & other) const
+const bool AABBobj::checkCollision(const OBBobj & other) const
 {
 	//Calculation the half lengths and axis for this AABB
 	glm::vec3 halfLength = glm::vec3(std::abs(m_boundingBox.m_min.x - m_boundingBox.m_max.x) / 2,
@@ -175,12 +176,12 @@ bool AABBobj::checkCollision(const OBBobj & other) const
 	return true;
 }
 
-bool AABBobj::checkCollision(const BSobj & other) const
+const bool AABBobj::checkCollision(const BSobj & other) const
 {
 	return false;
 }
 
-bool AABBobj::checkCollision(const AABoundingBox & other) const
+const bool AABBobj::checkCollision(const AABoundingBox & other) const
 {
 	return m_boundingBox.m_max.x + m_pos.x > other.m_min.x + other.m_origin.x &&
 		m_boundingBox.m_min.x + m_pos.x < other.m_max.x + other.m_origin.x &&
@@ -190,7 +191,7 @@ bool AABBobj::checkCollision(const AABoundingBox & other) const
 		m_boundingBox.m_min.z + m_pos.z < other.m_max.z + other.m_origin.z;
 }
 
-bool AABBobj::checkCollision(const OBoundingBox & other) const
+const bool AABBobj::checkCollision(const OBoundingBox & other) const
 {
 	//Calculation the half lengths and axis for this AABB
 	glm::vec3 halfLength = glm::vec3(std::abs(m_boundingBox.m_min.x - m_boundingBox.m_max.x) / 2,
@@ -338,7 +339,7 @@ bool AABBobj::checkCollision(const OBoundingBox & other) const
 	return true;
 }
 
-bool AABBobj::checkCollision(const BoundingSphere & other) const
+const bool AABBobj::checkCollision(const BoundingSphere & other) const
 {
 	return false;
 }

@@ -1,8 +1,11 @@
 #include "OctTree.h"
 
+#include "AABBobj.h"
+#include "OBBobj.h"
+
 bool OctTree::s_built = false;
 bool OctTree::s_ready = false;
-std::queue<std::shared_ptr<Collidable>> OctTree::s_queue = std::queue<std::shared_ptr<Collidable>>();
+std::queue<Collidable*> OctTree::s_queue = std::queue<Collidable*>();
 
 OctTree::OctTree()
 {
@@ -14,7 +17,74 @@ OctTree::OctTree(const AABoundingBox & bounds)
 	m_boundingBox = bounds;
 }
 
-OctTree::OctTree(const AABoundingBox & bounds, std::vector<std::shared_ptr<Collidable>>& objs)
+void OctTree::tick(GameData * gameData)
+{
+	if (s_built && s_ready)
+	{
+		if (m_collidable.empty())
+		{
+			if (m_childNodes.empty())
+			{
+				if (m_life == -1)
+				{
+					m_life = MaxLifeSpan;
+				}
+				else if (m_life > 0)
+				{
+					--m_life;
+				}
+			}
+		}
+		else
+		{
+			if (m_life != -1)
+			{
+				if (m_life <= 64)
+					//MaxLifeSpan *= 2;
+				m_life = -1;
+			}
+		}
+
+		std::vector<Collidable*> movedObjects;
+		movedObjects.reserve(m_collidable.size());
+
+		for (auto& obj : m_collidable)
+		{
+			if (!obj->isCollidable())
+			{
+				movedObjects.push_back(obj);
+			}
+		}
+
+		for (auto& obj : m_collidable)
+		{
+			for (auto& other : m_collidable)
+			{
+				switch (other->getType())
+				{
+				case Type::AABB:
+				{
+					auto temp = static_cast<const AABBobj*>(other);
+					obj->checkCollision(*temp);
+					break;
+				}
+				case Type::OBB:
+				{
+					auto temp = static_cast<const OBBobj*>(other);
+					obj->checkCollision(*temp);
+					break;
+				}
+				case Type::BS:
+				{
+					break;
+				}
+				}
+			}
+		}
+	}
+}
+
+OctTree::OctTree(const AABoundingBox & bounds, std::vector<Collidable*>& objs)
 {
 	m_boundingBox = bounds;
 	m_collidable = objs;
@@ -72,8 +142,8 @@ void OctTree::buildTree()
 		glm::vec3(center.x, m_boundingBox.m_max.y, m_boundingBox.m_max.z), glm::vec3(0.0f)),
 	};
 
-	std::vector<std::shared_ptr<Collidable>> tempVector[8];
-	std::vector < std::shared_ptr<Collidable>> delist;
+	std::vector<Collidable*> tempVector[8];
+	std::vector<Collidable*> delist;
 
 	for (auto& obj : m_collidable)
 	{
@@ -117,11 +187,11 @@ void OctTree::updateTree()
 	s_ready = true;
 }
 
-std::shared_ptr<OctTree> OctTree::createNode(AABoundingBox box, std::vector<std::shared_ptr<Collidable>> objs)
+std::unique_ptr<OctTree> OctTree::createNode(AABoundingBox box, std::vector<Collidable*>& objs)
 {
 	if (objs.size() == 0)
 		return nullptr;
 
-	return std::make_shared<OctTree>(box, objs);
+	return std::make_unique<OctTree>(box, objs);;
 }
 

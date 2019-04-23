@@ -26,6 +26,7 @@ public:
 	const glm::vec3& getScale() const { return m_scale; }
 	const glm::vec4& getColour() const { return m_colour; }
 	const glm::quat& getRotation() const { return m_rotation; }
+	const bool& isCollidable() const { return m_collidable; }
 
 	//Setters
 	void setPos(const glm::vec3& newPos) { m_pos = newPos; }

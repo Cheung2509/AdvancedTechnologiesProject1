@@ -9,14 +9,15 @@
 OBBobj::OBBobj()
 {
 	m_type = Type::OBB;
+	m_collidable = true;
 }
 
-bool OBBobj::checkCollision(const glm::vec3 & pos) const
+const bool OBBobj::checkCollision(const glm::vec3 & pos) const
 {
 	return false;
 }
 
-bool OBBobj::checkCollision(const AABBobj & other) const
+const bool OBBobj::checkCollision(const AABBobj & other) const
 {
 	float ra;
 	float rb;
@@ -175,7 +176,7 @@ bool OBBobj::checkCollision(const AABBobj & other) const
 	return true;
 }
 
-bool OBBobj::checkCollision(const OBBobj& other) const
+const bool OBBobj::checkCollision(const OBBobj& other) const
 {
 	float ra;
 	float rb;
@@ -326,12 +327,12 @@ bool OBBobj::checkCollision(const OBBobj& other) const
 	return true;
 }
 
-bool OBBobj::checkCollision(const BSobj & other) const
+const bool OBBobj::checkCollision(const BSobj & other) const
 {
 	return false;
 }
-
-bool OBBobj::checkCollision(const AABoundingBox & other) const
+ 
+const bool OBBobj::checkCollision(const AABoundingBox & other) const
 {
 	float ra;
 	float rb;
@@ -489,8 +490,8 @@ bool OBBobj::checkCollision(const AABoundingBox & other) const
 
 	return true;
 }
-
-bool OBBobj::checkCollision(const OBoundingBox & other) const
+ 
+const bool OBBobj::checkCollision(const OBoundingBox & other) const
 {
 	float ra;
 	float rb;
@@ -640,8 +641,8 @@ bool OBBobj::checkCollision(const OBoundingBox & other) const
 
 	return true;
 }
-
-bool OBBobj::checkCollision(const BoundingSphere & other) const
+ 
+const bool OBBobj::checkCollision(const BoundingSphere & other) const
 {
 	return false;
 }
