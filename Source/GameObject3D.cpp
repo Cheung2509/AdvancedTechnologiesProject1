@@ -20,7 +20,7 @@ void GameObject3D::tick(GameData * gameData)
 	glm::mat4 translationMat = glm::translate(glm::mat4(1.0f), m_pos);
 	glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), m_scale);
 
-	m_worldMatrix = translationMat * glm::mat4_cast(m_rotation) * scaleMat;
+	m_worldMatrix = translationMat  * scaleMat* glm::mat4_cast(m_rotation);
 }
 
 void GameObject3D::pushObject(GameObject3D * obj1, GameData* gameData)

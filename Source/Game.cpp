@@ -3,6 +3,7 @@
 #include "ErrorHandler.h"
 #include "Model.h"
 #include "Player.h"
+#include "Plane.h"
 #include "Helper.h"
 
 bool Game::init()
@@ -14,6 +15,12 @@ bool Game::init()
 	//Initialise game objects
 	auto model = std::make_unique<Model>(shader, "Resources/Models/Suzanne.obj");
 	model->setScale(glm::vec3(0.25f));
+
+	auto plane = std::make_unique<Plane>(shader, glm::vec3(10.0f));
+	plane->setPos(glm::vec3(0.0f, -10.0f, -10.0f));
+	plane->rotate(90.0f, glm::vec3(-1.0f, 0.0f, 0.0f));
+	plane->setColour(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	m_gameObjects.push_back(std::move(plane));
 
 	auto player = std::make_unique<Player>();
 	player->init(std::move(model));

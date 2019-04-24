@@ -40,7 +40,7 @@ public:
 	void setPos(const glm::vec3& newPos) { m_pos = newPos; }
 	void setScale(const glm::vec3& newScale) { m_scale = newScale; }
 	void setColour(const glm::vec4& colour) { m_colour = colour; }
-	void rotate(const float& angle, const glm::vec3& axis) { m_rotation = glm::rotate(m_rotation, angle, axis); }
+	void rotate(const float& angle, const glm::vec3& axis) { m_rotation = glm::rotate(m_rotation, glm::radians(angle), axis); }
 protected:
 	glm::vec3 m_pos;
 	glm::vec3 m_scale;

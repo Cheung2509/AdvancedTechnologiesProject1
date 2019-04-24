@@ -154,6 +154,7 @@
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\OBBobj.cpp" />
     <ClCompile Include="Source\OctTree.cpp" />
+    <ClCompile Include="Source\Plane.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Source\GameData.h" />
     <ClInclude Include="Source\GameObject3D.h" />
     <ClInclude Include="Source\IndexBuffer.h" />
+    <ClInclude Include="Source\Plane.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Shader.h" />

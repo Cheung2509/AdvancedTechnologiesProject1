@@ -37,14 +37,20 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{bc6af50d-ac70-45f6-9e44-e9d11d9d2876}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Game\Collision">
-      <UniqueIdentifier>{85a0f161-c952-48d0-884d-b2438d3c1fd0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Game">
       <UniqueIdentifier>{b0cecc95-fa54-4549-9c03-a7bdf115892f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game\Collision">
+    <Filter Include="Header Files\Game\GameObjects">
+      <UniqueIdentifier>{15cf8de4-1e89-4211-95b9-e30d61309911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\GameObjects\Collision">
       <UniqueIdentifier>{9d3341db-6505-4e44-b707-42d868304276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects">
+      <UniqueIdentifier>{98f6ce13-7e11-4d38-8f2b-47eaa49a4e3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameObjects\Collision">
+      <UniqueIdentifier>{85a0f161-c952-48d0-884d-b2438d3c1fd0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,47 +87,50 @@
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Source Files\Vertex</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Cube.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Game.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject3D.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Source\Timer.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Source\VBO.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CollidableCube.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Source\AABBobj.cpp">
-      <Filter>Source Files\Game\Collision</Filter>
+      <Filter>Source Files\Game\GameObjects\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\OBBobj.cpp">
-      <Filter>Source Files\Game\Collision</Filter>
+      <Filter>Source Files\Game\GameObjects\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\OctTree.cpp">
-      <Filter>Source Files\Game\Collision</Filter>
+      <Filter>Source Files\Game\GameObjects\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\CollisionManager.cpp">
-      <Filter>Source Files\Game\Collision</Filter>
+      <Filter>Source Files\Game\GameObjects\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collidable.cpp">
-      <Filter>Source Files\Game\Collision</Filter>
+      <Filter>Source Files\Game\GameObjects\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cube.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollidableCube.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject3D.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VBO.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Plane.cpp">
+      <Filter>Source Files\Game\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -878,12 +887,6 @@
     <ClInclude Include="Source\Shader.h">
       <Filter>Header Files\Vertex</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cube.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Source\DrawData.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
@@ -893,13 +896,7 @@
     <ClInclude Include="Source\GameData.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameObject3D.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Model.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VBO.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
@@ -908,23 +905,38 @@
     <ClInclude Include="Source\Helper.h">
       <Filter>Header Files\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CollidableCube.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Source\VertexData.h">
       <Filter>Header Files\Vertex</Filter>
     </ClInclude>
     <ClInclude Include="Source\AABBobj.h">
-      <Filter>Header Files\Game\Collision</Filter>
+      <Filter>Header Files\Game\GameObjects\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Source\Collidable.h">
-      <Filter>Header Files\Game\Collision</Filter>
+      <Filter>Header Files\Game\GameObjects\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Source\CollisionManager.h">
-      <Filter>Header Files\Game\Collision</Filter>
+      <Filter>Header Files\Game\GameObjects\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Source\OBBobj.h">
-      <Filter>Header Files\Game\Collision</Filter>
+      <Filter>Header Files\Game\GameObjects\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject3D.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\VBO.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollidableCube.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cube.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Plane.h">
+      <Filter>Header Files\Game\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1322,7 +1334,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Source\OctTree.h">
-      <Filter>Header Files\Game\Collision</Filter>
+      <Filter>Header Files\Game\GameObjects\Collision</Filter>
     </None>
   </ItemGroup>
 </Project>
