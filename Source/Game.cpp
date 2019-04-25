@@ -10,10 +10,10 @@ bool Game::init()
 {
 	//Initialise shader
 	std::shared_ptr<Shader> shader = std::make_shared<Shader>
-		("Resources/Shaders/VertexShader.glsl", "Resources/Shaders/FragmentShader.frag");
+		("Shaders/VertexShader.glsl", "Shaders/FragmentShader.frag");
 
 	//Initialise game objects
-	auto model = std::make_unique<Model>(shader, "Resources/Models/Suzanne.obj");
+	auto model = std::make_unique<Model>(shader, "Models/Suzanne.obj");
 	model->setScale(glm::vec3(0.25f));
 
 	auto plane = std::make_unique<Plane>(shader, glm::vec3(10.0f));
@@ -26,7 +26,7 @@ bool Game::init()
 	player->init(std::move(model));
 	m_gameObjects.push_back(std::move(player));
 
-	auto lightSource = std::make_unique<Model>(shader, "Resources/Models/cube.obj");
+	auto lightSource = std::make_unique<Model>(shader, "Models/cube.obj");
 	lightSource->setPos(glm::vec3(0.0f, 0.0f, 0.0f));
 	lightSource->setScale(glm::vec3(0.25));
 	m_gameObjects.push_back(std::move(lightSource));
