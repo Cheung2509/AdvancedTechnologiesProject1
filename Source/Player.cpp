@@ -3,26 +3,25 @@
 #include "GameData.h"
 #include "Key.h"
 
-Player::Player(std::unique_ptr<VBO> model)
+Player::Player(std::shared_ptr<VBO> model)
 {
 	m_type = Tag::PLAYER;
 }
 
-void Player::init(std::unique_ptr<VBO> model)
+void Player::init(std::shared_ptr<VBO> model)
 {
-	m_model = std::move(model);
+	m_model = model;
 	m_boundingBox.m_origin = m_pos;
-	m_boundingBox.m_halfLength = glm::vec3(std::abs(m_model->getMin().x - m_model->getMax().x) / 2,
-										   std::abs(m_model->getMin().y - m_model->getMax().y) / 2,
-										   std::abs(m_model->getMin().z - m_model->getMax().z) / 2) * m_scale;
+	m_boundingBox.m_halfLength = glm::vec3(glm::abs(m_model->getMax() - m_model->getMin()) / 2.0f) * m_scale;
 
 	m_boundingBox.m_axes[0] = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_boundingBox.m_axes[1] = glm::vec3(0.0f, 1.0f, 0.0f);
 	m_boundingBox.m_axes[2] = glm::vec3(0.0f, 0.0f, 1.0f);
 }
 
-void Player::onHit(Collidable* other)
+void Player::onHit(Collidable* other, GameData* gameData)
 {
+	pushObject(other, gameData);
 }
 
 void Player::tick(GameData * gameData)

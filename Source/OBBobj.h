@@ -16,7 +16,10 @@ public:
 	virtual const bool checkCollision(const AABoundingBox& other) const;
 	virtual const bool checkCollision(const OBoundingBox& other) const;
 	virtual const bool checkCollision(const BoundingSphere& other) const;
-	virtual void onHit(Collidable* other);
+	virtual void onHit(Collidable* other, GameData* gameData);
+
+	virtual const glm::vec3 getMin() const;
+	virtual const glm::vec3 getMax() const;
 
 	const OBoundingBox& getBox() const { return m_boundingBox; }
 

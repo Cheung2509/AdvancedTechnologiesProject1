@@ -20,12 +20,13 @@ const bool AABBobj::checkCollision(const glm::vec3& pos) const
 
 const bool AABBobj::checkCollision(const AABBobj& other) const
 {
-	return m_boundingBox.m_max.x + m_pos.x > other.getBox().m_min.x + other.getPos().x &&
-		m_boundingBox.m_min.x + m_pos.x < other.getBox().m_max.x + other.getPos().x &&
-		m_boundingBox.m_max.y + m_pos.y > other.getBox().m_min.y + other.getPos().y &&
-		m_boundingBox.m_min.y + m_pos.y < other.getBox().m_max.y + other.getPos().y &&
-		m_boundingBox.m_max.z + m_pos.z > other.getBox().m_min.z + other.getPos().z &&
-		m_boundingBox.m_min.z + m_pos.z < other.getBox().m_max.z + other.getPos().z;
+	AABoundingBox otherBox = other.getBox();
+	return m_boundingBox.m_max.x + m_pos.x > otherBox.m_min.x + otherBox.m_origin.x &&
+		m_boundingBox.m_min.x + m_pos.x < otherBox.m_max.x + otherBox.m_origin.x &&
+		m_boundingBox.m_max.y + m_pos.y > otherBox.m_min.y + otherBox.m_origin.y &&
+		m_boundingBox.m_min.y + m_pos.y < otherBox.m_max.y + otherBox.m_origin.y &&
+		m_boundingBox.m_max.z + m_pos.z > otherBox.m_min.z + otherBox.m_origin.z &&
+		m_boundingBox.m_min.z + m_pos.z < otherBox.m_max.z + otherBox.m_origin.z;
 }
 
 const bool AABBobj::checkCollision(const OBBobj & other) const

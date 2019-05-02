@@ -1,21 +1,14 @@
 #pragma once
-#include "glm/glm.hpp"
 
-struct Light
+#include "GameObject3D.h"
+
+class Light : public GameObject3D
 {
-	glm::vec3 m_colour;
-	float m_ambient;
-	float m_diffuse;
-};
+public:
+	Light() = default;
+	virtual ~Light() = default;
 
-struct PointLight : public Light
-{
-	glm::vec3 m_position;
-
-	struct
-	{
-		float m_constant;
-		float m_linear;
-		float m_exp;
-	}Attenuation;
+private:
+	float m_ambientIntensity = 0.5f;
+	float m_diffuseIntensity = 0.5f;
 };

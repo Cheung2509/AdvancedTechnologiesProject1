@@ -23,6 +23,9 @@ public:
 	virtual const bool checkCollision(const OBoundingBox& other) const;
 	virtual const bool checkCollision(const BoundingSphere& other) const;
 
+	virtual const glm::vec3 getMin() const { return m_boundingBox.m_min + m_pos; }
+	virtual const glm::vec3 getMax() const { return m_boundingBox.m_max + m_pos; }
+
 	virtual void onHit(Collidable* other);
 
 	virtual void tick(GameData* gameData) override;

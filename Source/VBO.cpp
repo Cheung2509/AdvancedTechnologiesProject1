@@ -109,7 +109,7 @@ void VBO::draw(DrawData * drawData)
 	m_shader->setUniform4fv("u_view", 1, GL_FALSE, view);
 	m_shader->setUniform4fv("u_model", 1, GL_FALSE, m_worldMatrix);
 	m_shader->setUniform4fv("u_MVP", 1, GL_FALSE, mvp);
-	m_shader->setUniform3f("u_colour", m_colour.x, m_colour.y, m_colour.z);
+	m_shader->setUniform4f("u_colour", m_colour.r, m_colour.g, m_colour.b, m_colour.w);
 
 	drawData->m_renderer->draw(*m_va, *m_ib, *m_shader);
 }

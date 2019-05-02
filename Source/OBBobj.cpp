@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "glm/gtc/quaternion.hpp"
+#include "glm/gtx/rotate_vector.hpp"
 
 #include "AABBobj.h"
 
@@ -345,9 +346,9 @@ const bool OBBobj::checkCollision(const AABoundingBox & other) const
 									 std::abs(other.m_min.y - other.m_max.y) / 2,
 									 std::abs(other.m_min.z - other.m_max.z) / 2) * m_scale;
 
-	glm::vec3 axes[3] = {glm::normalize(glm::vec3(1.0f, 0.0f, 0.0f) * m_rotation),
-		glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f) * m_rotation),
-		glm::normalize(glm::vec3(0.0f, 0.0f, 1.0f) * m_rotation),};
+	glm::vec3 axes[3] = {glm::normalize(glm::vec3(1.0f, 0.0f, 0.0f)),
+		glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)),
+		glm::normalize(glm::vec3(0.0f, 0.0f, 1.0f))};
 
 	//Get rotation matrix of the box
 	for (int i = 0; i < 3; i++)
@@ -647,8 +648,20 @@ const bool OBBobj::checkCollision(const BoundingSphere & other) const
 	return false;
 }
 
-void OBBobj::onHit(Collidable* other)
+void OBBobj::onHit(Collidable* other, GameData* gameData)
 {
+}
+
+const glm::vec3 OBBobj::getMin() const
+{
+	glm::vec3 temp = m_pos - m_boundingBox.m_halfLength;
+	return glm::rotate(m_rotation, temp);
+}
+
+const glm::vec3 OBBobj::getMax() const
+{
+	glm::vec3 temp = m_pos + m_boundingBox.m_halfLength;
+	return glm::rotate(m_rotation, temp);
 }
 
 void OBBobj::tick(GameData * gameData)

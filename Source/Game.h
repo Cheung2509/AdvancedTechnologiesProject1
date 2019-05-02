@@ -7,7 +7,7 @@
 #include "GameData.h"
 #include "DrawData.h"
 #include "Keyboard.h"
-#include "OBBobj.h"
+#include "OctTree.h"
 
 class Game
 {
@@ -24,4 +24,5 @@ private:
 	std::unique_ptr<GameData> m_gameData;
 
 	std::vector<std::unique_ptr<GameObject3D>> m_gameObjects;
+	std::unique_ptr<Octree> m_octree;
 };

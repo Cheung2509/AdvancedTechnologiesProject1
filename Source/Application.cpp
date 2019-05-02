@@ -11,13 +11,15 @@
 
 Application::~Application()
 {
+	delete m_window;
 }
 
 const bool Application::initialize(const wchar_t* className)
 {
-	m_window.init(className);
+	m_window = new Window();
+	m_window->init(className);
 
-#if _DEBUG == 1
+#
 	//Initiate console for debugging
 	if (!AllocConsole())
 	{
@@ -26,10 +28,10 @@ const bool Application::initialize(const wchar_t* className)
 
 	std::ofstream console_out("CONOUT$");
 	std::cout.rdbuf(console_out.rdbuf());
-#endif
+
 
 	m_renderer = std::make_shared<Renderer>();
-	m_renderer->init(m_window.getHWND());
+	m_renderer->init(m_window->getHWND());
 
 	m_game.init();
 
@@ -40,8 +42,8 @@ const bool Application::run()
 {
 	Timer timer;
 
-	if (!IsWindowVisible(m_window.getHWND()))
-		ShowWindow(m_window.getHWND(), SW_SHOW);
+	if (!IsWindowVisible(m_window->getHWND()))
+		ShowWindow(m_window->getHWND(), SW_SHOW);
 
 	// The render loop is controlled here.
 	MSG  msg;
@@ -51,10 +53,10 @@ const bool Application::run()
 	{
 		msg = processMessage();
 
-		m_game.tick(timer.mark(), m_window.getKeyboard(), m_window.getMouse());
+		m_game.tick(timer.mark(), m_window->getKeyboard(), m_window->getMouse());
 		m_game.draw(m_renderer);
 
-		SwapBuffers(m_window.getHDC());
+		SwapBuffers(m_window->getHDC());
 	}
 
 	return true;

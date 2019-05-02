@@ -67,8 +67,10 @@ public:
 	const CollidableBounds& getCollidableType() const { return m_collidableType; }
 	const bool& hasCollided() const { return m_collided; }
 	void setCollided(const bool& collided) { m_collided = collided; }
-	virtual void onHit(Collidable* other) = 0;
+	virtual void onHit(Collidable* other, GameData* gameData) = 0;
 
+	virtual const glm::vec3 getMin() const = 0;
+	virtual const glm::vec3 getMax() const = 0;
 protected:
 	CollidableBounds m_collidableType = CollidableBounds::NONE;
 	bool m_collided = false;

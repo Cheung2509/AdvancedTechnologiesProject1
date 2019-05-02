@@ -1,12 +1,20 @@
 #include "CollidableCube.h"
 
-void CollidableCube::init(std::unique_ptr<VBO> model)
+std::unique_ptr<Model> CollidableCube::s_model = nullptr;
+
+CollidableCube::CollidableCube(std::shared_ptr<Shader> shader)
 {
-	m_model = std::move(model);
+	if(!s_model)
+	{
+		s_model = std::make_unique<Model>(shader, "Models/Cube_Model.obj");
+	}
+
 	m_boundingBox.m_origin = m_pos;
-	m_boundingBox.m_halfLength = glm::vec3(std::abs(m_model->getMin().x - m_model->getMax().x) / 2,
-										   std::abs(m_model->getMin().y - m_model->getMax().y) / 2,
-										   std::abs(m_model->getMin().z - m_model->getMax().z) / 2) * m_scale;
+	m_boundingBox.m_halfLength = glm::vec3(std::abs(s_model->getMin().x - s_model->getMax().x) / 2,
+										   std::abs(s_model->getMin().y - s_model->getMax().y) / 2,
+										   std::abs(s_model->getMin().z - s_model->getMax().z) / 2) * m_scale;
+
+	m_type = Tag::STATIC;
 
 	m_boundingBox.m_axes[0] = glm::vec3(1.0f, 0.0f, 0.0f);
 	m_boundingBox.m_axes[1] = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -32,7 +40,7 @@ void CollidableCube::tick(GameData * gameData)
 void CollidableCube::draw(DrawData * drawData)
 {
 	//Draw model
-	m_model->setWorld(this->m_worldMatrix);
-	m_model->setColour(m_colour);
-	m_model->draw(drawData);
+	s_model->setWorld(this->m_worldMatrix);
+	s_model->setColour(m_colour);
+	s_model->draw(drawData);
 }

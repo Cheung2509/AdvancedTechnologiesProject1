@@ -14,7 +14,8 @@ Plane::Plane(std::shared_ptr<Shader> shader, const glm::vec2& size)
 	
 	m_indices =
 	{
-		0,1,2,2,3,0
+		0,1,2,
+		2,3,0
 	};
 
 	init(shader);

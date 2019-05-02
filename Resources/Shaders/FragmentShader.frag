@@ -1,6 +1,5 @@
 #version 400 core
 
-in vec4 fragmentColour;
 in mat4 model;
 in vec3 normal;
 in vec3 fragPos;
@@ -25,6 +24,7 @@ struct Light
 	vec3 specular;
 };
 
+uniform vec4 u_colour;
 uniform Light u_light;
 uniform Material u_material;
 uniform vec3 u_viewPos;
@@ -36,20 +36,20 @@ void main()
 	brightness = clamp(brightness,0,1);
 
 	//Calculating ambient
-	vec3 ambient = u_light.ambient * fragmentColour.rgb * 1;
+	vec3 ambient = u_light.ambient * u_colour.rgb * 1;
 	
 	//Calculating diffuse
 	float diffuseCoefficient = max(0.0, brightness);
-	vec3 diffuse = diffuseCoefficient * fragmentColour.rgb * 1;
+	vec3 diffuse = diffuseCoefficient * u_colour.rgb * 1;
 
-	//Calculating specula
+	//Calculating specular
 	vec3 incedence = -surfaceToLight;
 	vec3 reflection = reflect(incedence, normal);
 	vec3 surfaceToCamera = normalize(u_viewPos - fragPos);
 	float angle = max(0, dot(surfaceToCamera, reflection));
 	
 	float specCoefficient = 0.0;
-	if(diffuseCoefficient > 0.0)
+	if(diffuseCoefficient > 0.0) 
 	{
 		specCoefficient = pow(angle, u_material.shininess);
 	}

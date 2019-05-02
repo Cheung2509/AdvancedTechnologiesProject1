@@ -16,7 +16,8 @@ enum class Tag
 	NONE = 0,
 	PLAYER = 1, 
 	ENEMY = 2,
-	PLANE = 3
+	PLANE = 3,
+	STATIC = 4
 };
 
 class GameObject3D
@@ -35,6 +36,7 @@ public:
 	const glm::vec4& getColour() const { return m_colour; }
 	const glm::quat& getRotation() const { return m_rotation; }
 	const bool& isCollidable() const { return m_collidable; }
+	const Tag& getTag() const { return m_type; }
 
 	//Setters
 	void setPos(const glm::vec3& newPos) { m_pos = newPos; }

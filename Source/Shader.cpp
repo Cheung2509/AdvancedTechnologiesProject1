@@ -48,7 +48,7 @@ void Shader::setUniform4f(const std::string & name, float v0, float v1, float v2
 void Shader::setUniform4fv(const std::string & name, int count, bool transpose, glm::mat4& matrix)
 {
 	bind();
-	glUniformMatrix4fv(getUniformLocation(name), count, transpose, &matrix[0][0]);
+	GLCALL(glUniformMatrix4fv(getUniformLocation(name), count, transpose, &matrix[0][0]));
 }
 
 int Shader::getUniformLocation(const std::string & name)
@@ -66,7 +66,7 @@ unsigned int Shader::createShader(const std::string & vertexShader, const std::s
 {
 	unsigned int program = glCreateProgram();
 
-	//Compile
+	//Compile shaders
 	unsigned int vs = compileShader(GL_VERTEX_SHADER, parseShader(vertexShader));
 	unsigned int fs = compileShader(GL_FRAGMENT_SHADER, parseShader(fragmentShader));
 
@@ -99,15 +99,18 @@ const std::string Shader::parseShader(const std::string& filepath)
 
 unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 {
+	//Create shader id
 	unsigned int id = glCreateShader(type);
 	const char* src = source.c_str();
 
+	//Compile the shader
 	glShaderSource(id, 1, &src, nullptr);
 	glCompileShader(id);
 
 	int result;
 	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
 
+	//If fails print out errors
 	if (result == GL_FALSE)
 	{
 		int length;
